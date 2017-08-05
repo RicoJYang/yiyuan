@@ -5,6 +5,7 @@
  * Date: 2017/7/12
  * Time: 16:26
  */
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\ApiController;
@@ -91,6 +92,12 @@ class AdminController extends ApiController
         ];
         $this->validator($request->all(), $rules);
         return $this->repository->updatePwd($id, $request->password);
+    }
+
+    public function all(Request $request)
+    {
+        $type = $request->input('type', 0);
+        return $this->repository->all($type);
     }
 
 }

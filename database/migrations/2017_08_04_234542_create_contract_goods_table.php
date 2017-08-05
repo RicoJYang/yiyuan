@@ -17,9 +17,11 @@ class CreateContractGoodsTable extends Migration
             $table->increments('id');
             $table->integer('contract_id')->comment('合同id');
             $table->integer('variety_id')->comment('品种');
-            $table->float('weight',8,3)->comment('重量吨数');
-            $table->decimal('price')->comment('单价');
-            $table->decimal('hedge_price')->comment('保值价');
+            $table->float('weight',16,3)->comment('重量吨数');
+            $table->float('remainder_weight',16,3)->comment('剩余可提重量吨数');
+            $table->decimal('price',16,2)->comment('单价');
+            $table->decimal('count',16,2)->comment('小计');
+            $table->decimal('hedge_price',16,2)->comment('保值价');
             $table->softDeletes();
             $table->timestamps();
         });

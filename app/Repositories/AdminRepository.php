@@ -53,6 +53,15 @@ class AdminRepository
 
     public function genarateAdminToken($adminId)
     {
-        return md5($adminId.time());
+        return md5($adminId . time());
+    }
+
+    public function all($type)
+    {
+        $where = [];
+        if ($type > 0) {
+            $where[] = ['type', $type];
+        }
+        return Admin::where($where)->get(['id','name'])->toArray();
     }
 }

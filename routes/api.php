@@ -26,14 +26,18 @@ $api->version('v1', ['namespace' => 'App\Http\Controllers\Admin'], function ($ap
         $api->get('varieties', 'VarietyController@all');
 
         //合同管理
-        $api->get('contracts', 'CustomerController@index');
-        $api->get('customers/{id}', 'CustomerController@show');
-        $api->post('contracts', 'CustomerController@store');
-        $api->put('contracts/{id}', 'CustomerController@update');
+        $api->get('contract/generateCN', 'ContractController@getCN');
+        $api->get('contracts', 'ContractController@index');
+        $api->get('customers/{id}', 'ContractController@show');
+        $api->post('contracts', 'ContractController@store');
+        $api->put('contracts/{id}', 'ContractController@update');
 
+        $api->get('admins', 'AdminController@all');
         $api->post('admin', 'AdminController@create');
         $api->put('admin/{id}', 'AdminController@update');
         $api->put('admin/{id}/pwd', 'AdminController@updatePwd');
+
+        $api->post('files/upload','FileController@uploadOne');
 
     });
     $api->post('login', 'AdminController@login');

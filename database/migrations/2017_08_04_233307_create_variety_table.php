@@ -13,14 +13,16 @@ class CreateVarietyTable extends Migration
      */
     public function up()
     {
-        Schema::create('variety', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('parent_id')->nullable();
-            $table->string('name');
-            $table->string('code');
-            $table->softDeletes();
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('variety')) {
+            Schema::create('variety', function (Blueprint $table) {
+                $table->increments('id');
+                $table->integer('parent_id')->nullable();
+                $table->string('name');
+                $table->string('code');
+                $table->softDeletes();
+                $table->timestamps();
+            });
+        }
     }
 
     /**

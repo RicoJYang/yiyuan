@@ -13,15 +13,17 @@ class CreateCustomerTable extends Migration
      */
     public function up()
     {
-        Schema::create('customers', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->tinyInteger('type')->default(1);
-            $table->decimal('purchase_balance',10,2)->comment('采购合同余额')->default(0);
-            $table->decimal('sale_balance',10,2)->comment('销售合同余额')->default(0);
-            $table->softDeletes();
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('customers')) {
+            Schema::create('customers', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('name');
+                $table->tinyInteger('type')->default(1);
+                $table->decimal('purchase_balance', 10, 2)->comment('采购合同余额')->default(0);
+                $table->decimal('sale_balance', 10, 2)->comment('销售合同余额')->default(0);
+                $table->softDeletes();
+                $table->timestamps();
+            });
+        }
     }
 
     /**
