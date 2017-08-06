@@ -15,13 +15,14 @@ class CreateContractExecutionsTable extends Migration
     {
         Schema::create('contract_executions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('contract_id')->comment('合同id');
-            $table->integer('order_weight')->comment('开单吨数');
-            $table->integer('take_weight')->comment('实提吨数');
-            $table->decimal('take_price')->comment('单价');
+            $table->integer('contract_id')->comment('合同id');
+            $table->integer('variety_id')->comment('品种id');
+            $table->float('order_weight',16,3)->comment('开单吨数');
+            $table->float('delivery_weight',16,3)->comment('实提吨数');
+            $table->decimal('delivery_price',16,2)->comment('单价');
             $table->string('car_no')->comment('提货车号');
-            $table->date('take_date')->comment('提货日期');
-            $table->string('remark',500)->nullable();
+            $table->date('delivery_date')->comment('提货日期');
+            $table->string('remarks',500)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -25,6 +25,13 @@ $api->version('v1', ['namespace' => 'App\Http\Controllers\Admin'], function ($ap
         //品种
         $api->get('varieties', 'VarietyController@all');
 
+        //仓库
+        $api->get('storage/all', 'StorageController@all');
+        $api->get('storages', 'StorageController@index');
+        $api->post('storages', 'StorageController@store');
+        $api->put('storages/{id}', 'StorageController@update');
+        $api->delete('storages/{id}', 'StorageController@delete');
+
         //合同管理
         $api->get('contract/generateCN', 'ContractController@getCN');
         $api->get('contracts', 'ContractController@index');
@@ -32,12 +39,14 @@ $api->version('v1', ['namespace' => 'App\Http\Controllers\Admin'], function ($ap
         $api->post('contracts', 'ContractController@store');
         $api->put('contracts/{id}', 'ContractController@update');
 
+        $api->post('contractGoods','ContractExecutionController@store');
+
         $api->get('admins', 'AdminController@all');
         $api->post('admin', 'AdminController@create');
         $api->put('admin/{id}', 'AdminController@update');
         $api->put('admin/{id}/pwd', 'AdminController@updatePwd');
 
-        $api->post('files/upload','FileController@uploadOne');
+        $api->post('files/upload', 'FileController@uploadOne');
 
     });
     $api->post('login', 'AdminController@login');

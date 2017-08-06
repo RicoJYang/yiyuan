@@ -21,7 +21,6 @@ class Contract extends BaseRequest
             'created_date'=>'required|date',
             'category'=>'required|in:1,2',
             'pay_way'=>'required|in:1,2',
-            'delivery_address'=>'required|max:255',
             'remark'=>'max:500'
         ];
     }

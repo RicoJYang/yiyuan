@@ -20,4 +20,9 @@ class Contract extends BaseModel
     {
         return $this->belongsTo('App\Models\Variety','variety_id');
     }
+
+    public function goods()
+    {
+        return $this->hasMany('App\Models\ContractGoods','contract_id');
+    }
 }

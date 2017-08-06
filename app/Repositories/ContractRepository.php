@@ -74,6 +74,8 @@ class ContractRepository
         }
         return $query->where($where)
             ->with('variety')
+            ->with('goods.variety')
+            ->with('goods.storage')
             ->with(['customer' => function ($query) use ($params) {
                 if (isset($params['customer'])) {
                     $query->where('name', 'like', "%{$params['customer']}%");

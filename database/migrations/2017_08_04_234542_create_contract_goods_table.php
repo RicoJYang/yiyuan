@@ -13,18 +13,21 @@ class CreateContractGoodsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contract_goods', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('contract_id')->comment('合同id');
-            $table->integer('variety_id')->comment('品种');
-            $table->float('weight',16,3)->comment('重量吨数');
-            $table->float('remainder_weight',16,3)->comment('剩余可提重量吨数');
-            $table->decimal('price',16,2)->comment('单价');
-            $table->decimal('count',16,2)->comment('小计');
-            $table->decimal('hedge_price',16,2)->comment('保值价');
-            $table->softDeletes();
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('contract_goods')) {
+            Schema::create('contract_goods', function (Blueprint $table) {
+                $table->increments('id');
+                $table->integer('contract_id')->comment('合同id');
+                $table->integer('variety_id')->comment('品种id');
+                $table->float('weight', 16, 3)->comment('重量吨数');
+                $table->float('remainder_weight', 16, 3)->comment('剩余可提重量吨数');
+                $table->decimal('price', 16, 2)->comment('单价');
+                $table->decimal('count', 16, 2)->comment('小计');
+                $table->decimal('hedge_price', 16, 2)->comment('保值价');
+                $table->integer('storage_id')->comment('提货仓库id');
+                $table->softDeletes();
+                $table->timestamps();
+            });
+        }
     }
 
     /**
